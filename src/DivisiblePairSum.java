@@ -4,8 +4,7 @@ import java.util.List;
 public class DivisiblePairSum {
 
     static int divisibleSumPairs(int n, int k, int[] ar) {
-        int countPair = 0;
-        int sum = 0;
+
         List<Integer> arrElement = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             if(ar[i]%k!=0){

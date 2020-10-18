@@ -16,7 +16,6 @@ public class Kangaroo {
 
     static String kangaroo2(int x1, int v1, int x2, int v2) {
 		if (v1 > v2) {
-
         int remainder = (x1 - x2) % (v2 - v1);
 
         if (remainder == 0) {
@@ -37,9 +36,6 @@ public class Kangaroo {
         System.out.println(kangaroo2(0 ,3, 4 , 2));
         long endTime1 = System.nanoTime();
         System.out.println(endTime1);
-
-
-
 
     }
 }

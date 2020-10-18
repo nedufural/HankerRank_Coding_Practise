@@ -1,11 +1,11 @@
 public class CamelCase {
 
-    static int checkCamelCase(String camelString){
+   private static int checkCamelCase(String camelString){
         int countWord = 1;
         char [] camelChar = camelString.toCharArray();
 
-        for (int i = 0; i < camelChar.length; i++) {
-            if( Character.isUpperCase(camelChar[i])){
+        for (char c : camelChar) {
+            if (Character.isUpperCase(c)) {
                 countWord++;
             }
         }
