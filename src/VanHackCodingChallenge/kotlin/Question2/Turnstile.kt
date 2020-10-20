@@ -1,4 +1,4 @@
-package vanHackCodingChallenge.kotlin.Question2
+package VanHackCodingChallenge.kotlin.Question2
 
 import java.util.*
 

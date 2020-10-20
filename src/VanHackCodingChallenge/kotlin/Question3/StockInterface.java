@@ -1,4 +1,4 @@
-package vanHackCodingChallenge.kotlin.Question3;
+package VanHackCodingChallenge.kotlin.Question3;
 
 import java.time.DayOfWeek;
 import java.util.List;

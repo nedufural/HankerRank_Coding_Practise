@@ -1,4 +1,4 @@
-package vanHackCodingChallenge.kotlin.Question3;
+package VanHackCodingChallenge.kotlin.Question3;
 
 import com.google.gson.Gson;
 
@@ -37,7 +37,7 @@ public class StockPrice implements StockInterface {
     }
 
     public static LocalDate convertDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMMM-yyyy", Locale.ENGLISH);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMMM-yyyy");
         return LocalDate.parse(date, formatter);
     }
 
@@ -45,7 +45,7 @@ public class StockPrice implements StockInterface {
         StockDatum[] stockData = loadJsonFile();
         StockPrice stockPrice = new StockPrice(stockData);
         try {
-            List<String> list = stockPrice.openAndCloseStockPrices("3-August-2020", "30-Sep-2020", "Tuesday");
+            List<String> list = stockPrice.openAndCloseStockPrices("3-August-2020", "1-October-2020", "Tuesday");
             System.out.println(list.get(0));
         } catch (NoStockException | InvalidParameters e) {
             e.printStackTrace();
@@ -57,35 +57,43 @@ public class StockPrice implements StockInterface {
             throws NoStockException, InvalidParameters {
 
         List<String> lis = new ArrayList<>();
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("d-MMMM-yyyy", Locale.ENGLISH);
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("d-MMMM-yyyy");
         LocalDate startDate;
         LocalDate endDate;
 
         boolean isValidFirstDate = isValidDate(firstDate);
         boolean isValidLastDate = isValidDate(lastDate);
 
-        if (isValidLastDate && isValidFirstDate) {
-
-            String convertedFirstDate = convertDay(convertMonths(firstDate));
-            String convertedLastDate = convertDay(convertMonths(lastDate));
-            endDate = LocalDate.parse(convertedLastDate, pattern);
-            startDate = LocalDate.parse(convertedFirstDate, pattern);
-        } else {
+        if (!isValidFirstDate) {
             throw new InvalidParameters("Invalid date format");
         }
+        if (!isValidLastDate) {
+            throw new InvalidParameters("Invalid date format");
+        }
+        endDate = LocalDate.parse(firstDate, pattern);
+        startDate = LocalDate.parse(lastDate, pattern);
 
         List<LocalDate> weekdayList = getNumberOfDaysInSpecTime(weekDay, startDate, endDate);
-        checkStockAvailability(lis, weekdayList);
-        isEmptyStockList(lis);
-        return lis;
+        for (LocalDate week : weekdayList){
+            System.out.println(week);
+        }
+        List<String> result = checkStockAvailability(lis, weekdayList);
+        isEmptyStockList(result);
+        return result;
     }
 
-    private void checkStockAvailability(List<String> lis, List<LocalDate> weekdayList) {
-        for (int i = 0; i < stockData.length; i++) {
+    private List<String> checkStockAvailability(List<String> lis, List<LocalDate> weekdayList) {
+        System.out.println(lis.size());
+        for (int i = 0; i < weekdayList.size(); i++) {System.out.println(weekdayList.get(i)+" : "+stockData[i]);
+
             if (convertDate(stockData[i].getDate()).isEqual(weekdayList.get(i))) {
                 lis.add(stockData[i].getDate() + "   " + stockData[i].getOpen() + "  " + stockData[i].getClose());
             }
+            else{
+
+            }
         }
+        return lis;
     }
 
     private List<LocalDate> getNumberOfDaysInSpecTime(String weekDay, LocalDate startDate, LocalDate endDate) {
@@ -106,10 +114,11 @@ public class StockPrice implements StockInterface {
     }
 
     public boolean isValidDate(String strDate) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d-MMMM-yyyy", Locale.ENGLISH);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d-MMMM-yyyy");
         dateFormat.setLenient(false);
         try {
             Date javaDate = dateFormat.parse(strDate);
+            System.out.println(javaDate);
             return true;
         } catch (ParseException e) {
             return false;

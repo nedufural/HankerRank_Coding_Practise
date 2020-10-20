@@ -1,9 +1,9 @@
-package vanHackCodingChallenge.kotlin.Question3;
+package VanHackCodingChallenge.kotlin.Question3;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
- class StockDatum {
+public class StockDatum {
 
     @SerializedName("date")
     @Expose
