@@ -88,8 +88,5 @@ public class SherlockString {
          * else return NO else YES
          * if 1 element return YES
          * */
-
-
     }
-
 }
