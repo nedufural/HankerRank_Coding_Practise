@@ -77,5 +77,6 @@ public class LambdaExpression {
 
         }
         System.out.println(ans);
+      Thread thread =  new Thread();
     }
 }

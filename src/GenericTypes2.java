@@ -1,4 +1,4 @@
-package com.nekashop.app.test;
+
 
 public class GenericTypes2<T> {
         private T t;

@@ -1,4 +1,4 @@
-package com.nekashop.app.test;
+
 
 public class GenericTypes3 {
     // determines the largest of three Comparable objects

@@ -1,6 +1,5 @@
-package com.nekashop.app.test;
 
-import com.fasterxml.classmate.GenericType;
+
 
 public class GenericTypes implements CheckGenerics {
 

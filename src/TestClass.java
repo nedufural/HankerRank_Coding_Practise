@@ -1,4 +1,4 @@
-package com.nekashop.app.test;
+
 
 public class TestClass {
     public String checks() {
